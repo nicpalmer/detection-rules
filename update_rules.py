@@ -7,7 +7,7 @@ from uuid import uuid4
 kbnuser = os.environ["DR_KIBANA_USER"]
 kbnpwd = os.environ["DR_KIBANA_PASSWORD"]
 kburl = os.environ["DR_KIBANA_URL"]
-
+#test comment
 def create_rules(createbody, kbnuser,kbnpwd):
     resp = requests.post(
         url="{}/api/detection_engine/rules/_bulk_create".format(kburl),
