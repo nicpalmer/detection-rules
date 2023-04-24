@@ -1,3 +1,7 @@
+# Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+# or more contributor license agreements. Licensed under the Elastic License
+# 2.0; you may not use this file except in compliance with the Elastic License
+# 2.0. - filler for now!
 import json
 import requests
 import toml
@@ -7,7 +11,6 @@ from uuid import uuid4
 kbnuser = os.environ["DR_KIBANA_USER"]
 kbnpwd = os.environ["DR_KIBANA_PASSWORD"]
 kburl = os.environ["DR_KIBANA_URL"]
-#test comment
 def create_rules(createbody, kbnuser,kbnpwd):
     resp = requests.post(
         url="{}/api/detection_engine/rules/_bulk_create".format(kburl),
