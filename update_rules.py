@@ -9,9 +9,9 @@ import os
 from uuid import uuid4
 
 print("Var start")
-kbnuser = os.environ['DR_KIBANA_USER']
-kbnpwd = os.environ['DR_KIBANA_PASSWORD']
-kburl = os.environ['DR_KIBANA_URL']
+kbnuser = os.environ["DR_KIBANA_USER"]
+kbnpwd = os.environ["DR_KIBANA_PASSWORD"]
+kburl = os.environ["DR_KIBANA_URL"]
 print(kburl)
 print("Var end")
 def create_rules(createbody, kbnuser,kbnpwd):
