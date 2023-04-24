@@ -1,20 +1,14 @@
-# Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
-# or more contributor license agreements. Licensed under the Elastic License
-# 2.0; you may not use this file except in compliance with the Elastic License
-# 2.0. - filler for now!
 import json
 import requests
 import toml
 import os
 from uuid import uuid4
 
-print("Var start")
 kbnuser = os.environ["DR_KIBANA_USER"]
 kbnpwd = os.environ["DR_KIBANA_PASSWORD"]
 kburl = os.environ["DR_KIBANA_URL"]
-print(kburl)
-print("Var end")
-def create_rules(createbody, kbnuser,kbnpwd):
+
+def create_rules(createbody, kbnuser, kbnpwd):
     resp = requests.post(
         url="{}/api/detection_engine/rules/_bulk_create".format(kburl),
         json=createbody,
@@ -22,14 +16,13 @@ def create_rules(createbody, kbnuser,kbnpwd):
             "Content-Type": "application/json",
             "kbn-xsrf": str(uuid4())
         },
-        auth=(kbnuser,kbnpwd)
+        auth=(kbnuser, kbnpwd)
     )
     print(resp)
     for response in resp.json():
         failure = False
         try:
             if response["statusCode"] in range(400, 599):
-                response["statusCode"]
                 print(resp.json())
                 print("=====================================================================")
                 print(createbody)
@@ -39,6 +32,7 @@ def create_rules(createbody, kbnuser,kbnpwd):
         except Exception as err:
             print("Exception: {}".format(err))
             raise ValueError("Failed to create rule")
+
 
 custom_rules = []
 # Get all the custom rules; aka those prefixed with your custom path prefix
@@ -75,8 +69,9 @@ resp = requests.put(
         "Content-Type": "application/json",
         "kbn-xsrf": str(uuid4())
     },
-    auth=(kbnuser,kbnpwd)
+    auth=(kbnuser, kbnpwd)
 )
+print(resp)
 response = resp.json()
 
 if "error" in response:
@@ -97,7 +92,7 @@ for rule_resp in resp.json():
         print(rule_resp)
 
 created = False
-while not created:
+if created is not True:
     try:
         create_rules(createbody, kbnuser, kbnpwd)
     except Exception:
