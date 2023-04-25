@@ -32,6 +32,6 @@ timestamp_override = "event.ingested"
 type = "query"
 
 query = '''
-http.response.status_code:403 and http.request.method:get
+http.response.status_code:403 and http.request.method:post
 '''
 
